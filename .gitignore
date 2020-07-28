@@ -1,0 +1,3 @@
+/udagram-deployment/k8s/aws-secret.yml
+/udagram-deployment/k8s/env-configmap.yml
+/udagram-deployment/k8s/env-secret.yml
