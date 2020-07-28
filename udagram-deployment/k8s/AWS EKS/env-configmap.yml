@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  POSTGRES_HOST: dWRhZ3JhbWJhZXJkZXYuY25mYWZmZHh5NW83LmV1LWNlbnRyYWwtMS5yZHMuYW1hem9uYXdzLmNvbQ==
+  POSTGRES_DB: dWRhZ3JhbWJhZXJkZXY=
+  AWS_BUCKET: udagram-baer-dev 
+  AWS_REGION: eu-central-1
+  AWS_PROFILE: udagrambaerdev
+  JWT_SECRET: notagoodsecret
+  URL: http://localhost:8100
+    
+metadata:
+  name: env-config
