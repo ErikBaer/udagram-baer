@@ -1,18 +1,21 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     service: backend-user
   name: backend-user
 spec:
-  replicas: 2
+  replicas: 1
+  selector:
+    matchLabels:
+      service: backend-user
   template:
     metadata:
       labels:
         service: backend-user
     spec:
       containers:
-      - image: udagram-api-user
+      - image: erikbaer/udagram-api-user:latest
         name: backend-user 
         imagePullPolicy: Always  
         resources:
@@ -53,6 +56,14 @@ spec:
             secretKeyRef:
               name: env-secret
               key: POSTGRES_USERNAME
+        volumeMounts:
+        - name: aws-secret
+          mountPath: "/root/.aws/"
+          readOnly: true        
       restartPolicy: Always
+      volumes:
+      - name: aws-secret
+        secret:
+          secretName: aws-secret
 
 
