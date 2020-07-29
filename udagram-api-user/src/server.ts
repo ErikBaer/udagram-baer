@@ -20,7 +20,7 @@ const c = config;
   app.use(bodyParser.json());
 
   app.use(cors({
-    allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token", "Authorization"],
+    allowedHeaders: ["*"],
     methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
     origin: c.url
   }));
