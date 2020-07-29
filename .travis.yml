@@ -1,0 +1,16 @@
+language: minimal
+
+services: docker
+
+
+before_install:
+  - docker --version # print the version for logging
+  - docker-compose --version # print the version for logging
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo 'dockerhub credentials configured'
+
+
+
+install:
+  - docker-compose -f udagram-deployment/docker/docker-compose-build.yaml build --parallel
+  - docker-compose -f udagram-deployment/docker/docker-compose-build.yaml push 
