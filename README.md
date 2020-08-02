@@ -6,11 +6,6 @@ The project is split into two parts:
 1. Frontend - Angular web application built with Ionic Framework
 2. Backend RESTful API - Node-Express application
 
-# Solution Notes
-* With the solution, we can run the application through Docker rather than independently installing packages and running the Backend API and Frontend App. Refer to the `README` in `udagram-deployment` on notes on how to run with `docker-compose`.
-
-* The backend API has been decomposed into two independent microservices for users and for the feed. As such, there is a bit of duplicate code across the two codebases. In real-world scenarios, this would often be done to get our microservice up and running. To clean this up, the approach would be to abstract out common code into a library such as an internal `npm` package that each project would use.
-
 ## Getting Started
 > _tip_: it's recommended that you start with getting the backend API running since the frontend web application depends on the API.
 ### Prerequisite
