@@ -48,10 +48,25 @@ Create an AWS S3 bucket. Set the config values for environment variables prefixe
     ```
 * You can visit `http://localhost:8100` in your web browser to verify that the application is running. You should see a web interface.
 
+###CI/CD
+Continuous Integration & Deployment is realized via Docker/Dockerhub and Travis.CI.
+
+You can find instructions on how to set up Docker on https://docs.docker.com/get-docker/. You will also have to create an account on dockerhub.com.
+
+After creating an Account on travis-ci.org and syncing it to your Github-Repo, Travis will look for the travis.yml file placed in the root directory and execute the stated instructions. These 
+Instructions include building the Docker-Images and pushing them to www.dockerhub.com, so please set up your Docker-Credentials as Environment Variables for the specific repo on travis-ci.org and tag the Docker-Images accordingly.
+
+Kubectl is  configured via the travis.yml filte to run your Images on a Kubernetes-Cluster, and subsequently applying the Kubernetes-files placed in udagram/deployment/k8s will have kubernetes pull the newly-build images and deploy them to your Cluster automatically.
+
+###A/B Testing
+labels make seperate versions possible!
+
+
+
+
 ## Tips
-1. Take a look at `udagram-api` -- does it look like we can divide it into two modules to be deployed as separate microservices?
-2. The `.dockerignore` file is included for your convenience to not copy `node_modules`. Copying this over into a Docker container might cause issues if your local environment is a different operating system than the Docker image (ex. Windows or MacOS vs. Linux).
-3. It's useful to "lint" your code so that changes in the codebase adhere to a coding standard. This helps alleviate issues when developers use different styles of coding. `eslint` has been set up for TypeScript in the codebase for you. To lint your code, run the following:
+1. The `.dockerignore` file is included for your convenience to not copy `node_modules`. Copying this over into a Docker container might cause issues if your local environment is a different operating system than the Docker image (ex. Windows or MacOS vs. Linux).
+2. It's useful to "lint" your code so that changes in the codebase adhere to a coding standard. This helps alleviate issues when developers use different styles of coding. `eslint` has been set up for TypeScript in the codebase for you. To lint your code, run the following:
     ```bash
     npx eslint --ext .js,.ts src/
     ```
@@ -59,8 +74,8 @@ Create an AWS S3 bucket. Set the config values for environment variables prefixe
     ```bash
     npx eslint --ext .js,.ts src/ --fix
     ```
-4. Over time, our code will become outdated and inevitably run into security vulnerabilities. To address them, you can run:
+3. Over time, our code will become outdated and inevitably run into security vulnerabilities. To address them, you can run:
     ```bash
     npm audit fix
     ```
-5. In `set_env.sh`, environment variables are set with `export $VAR=value`. Setting it this way is not permanent; every time you open a new terminal, you will have to run `set_env.sh` to reconfigure your environment variables. To verify if your environment variable is set, you can check the variable with a command like `echo $POSTGRES_USERNAME`.
+4. In `set_env.sh`, environment variables are set with `export $VAR=value`. Setting it this way is not permanent; every time you open a new terminal, you will have to run `set_env.sh` to reconfigure your environment variables. To verify if your environment variable is set, you can check the variable with a command like `echo $POSTGRES_USERNAME`.
