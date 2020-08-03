@@ -53,9 +53,10 @@ Continuous Integration & Deployment is realized via Docker/Dockerhub and Travis.
 
 You can find instructions on how to set up Docker on https://docs.docker.com/get-docker/. You will also have to create an account on dockerhub.com.
 
-After creating an Account on travis-ci.org and syncing it to your Github-Repo, Travis will look for the travis.yml file placed in the root directory and execute the stated instructions. These Instructions include building the Docker-Images and pushing them to www.dockerhub.com, so please set up your Docker-Credentials as Environment Variables for the specific repo on travis-ci.org and tag the Docker-Images accordingly.
+After creating an Account on www.travis-ci.org and syncing it to your Github-Repo, Travis will look for the travis.yml file placed in the root directory and execute the stated instructions. These Instructions include building the Docker-Images and pushing them to www.dockerhub.com, so please set up your Docker-Credentials as Environment Variables for the specific Repo on www.travis-ci.org and tag the Docker-Images accordingly.
 
 Kubectl is  configured and run bei Travis.CI via the travis.yml file to apply the corresponding Kubernetes-files placed in udagram/deployment/k8s. Kubernetes will then pull the newly-build images and deploy them to your Cluster automatically.
+Please kindly find detailed information on how to set-up the required kube-config file and configure your cluster accordingly on www.kubernetes.io. 
 
 ### A/B Testing
 All Docker-Images are labeled to enable rolling-updates and A/B testing. For runnning two seperate versions of the same application, just adjust the tags accordingly before deployment. 
