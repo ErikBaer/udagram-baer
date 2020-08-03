@@ -53,15 +53,16 @@ Continuous Integration & Deployment is realized via Docker/Dockerhub and Travis.
 
 You can find instructions on how to set up Docker on https://docs.docker.com/get-docker/. You will also have to create an account on dockerhub.com.
 
-After creating an Account on travis-ci.org and syncing it to your Github-Repo, Travis will look for the travis.yml file placed in the root directory and execute the stated instructions. These 
-Instructions include building the Docker-Images and pushing them to www.dockerhub.com, so please set up your Docker-Credentials as Environment Variables for the specific repo on travis-ci.org and tag the Docker-Images accordingly.
+After creating an Account on travis-ci.org and syncing it to your Github-Repo, Travis will look for the travis.yml file placed in the root directory and execute the stated instructions. These Instructions include building the Docker-Images and pushing them to www.dockerhub.com, so please set up your Docker-Credentials as Environment Variables for the specific repo on travis-ci.org and tag the Docker-Images accordingly.
 
-Kubectl is  configured via the travis.yml filte to run your Images on a Kubernetes-Cluster, and subsequently applying the Kubernetes-files placed in udagram/deployment/k8s will have kubernetes pull the newly-build images and deploy them to your Cluster automatically.
+Kubectl is  configured and run bei Travis.CI via the travis.yml file to apply the corresponding Kubernetes-files placed in udagram/deployment/k8s. Kubernetes will then pull the newly-build images and deploy them to your Cluster automatically.
 
-###A/B Testing
-labels make seperate versions possible!
+### A/B Testing
+All Docker-Images are labeled to enable rolling-updates and A/B testing. For runnning two seperate versions of the same application, just adjust the tags accordingly before deployment. 
 
+### Public Access
 
+The services in kubernetes for the frontend as well as the reveseproxy (backend) are set up as type Load-Balancer. To make your app publicly accessible deploy the application to the cluster, then get the external-IP assigned to the reverseproxy and set it as the apps apiHost in /udagram-frontend/src/environments. Afterwards get the external IP for the frontend and set is as the URL-Variable in your environment variables (set_env.sh & docker-compose.yml). Commit and push your changes to Github so the CI/CD Pipeline will newly build and deploy the application, making it available at the respective public IP`s. 
 
 
 ## Tips
