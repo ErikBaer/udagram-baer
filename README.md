@@ -48,7 +48,7 @@ Create an AWS S3 bucket. Set the config values for environment variables prefixe
     ```
 * You can visit `http://localhost:8100` in your web browser to verify that the application is running. You should see a web interface.
 
-###CI/CD
+### CI/CD
 Continuous Integration & Deployment is realized via Docker/Dockerhub and Travis.CI.
 
 You can find instructions on how to set up Docker on https://docs.docker.com/get-docker/. You will also have to create an account on dockerhub.com.
